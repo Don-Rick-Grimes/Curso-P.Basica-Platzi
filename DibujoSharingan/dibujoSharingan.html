@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Dibujando un Sharingan</title>
+    <style>
+      body
+      {
+        background-color: #FFFFBF;
+        font-size: 30px;
+        text-align: center;
+      }
+      h1
+      {
+        font-size: 60px;
+      }
+      input[type = "text"]
+      {
+        font-size: 30px;
+        width: 120px;
+      }
+      input[type = "button"]
+      {
+        font-size: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Dibujando un Sharingan</h1>
+    <p>
+      Cuantas lineas quieres para el contorno del ojo?
+      <input id="texto_lineas" type="text" value="20"/>
+      <br/>Cuantas pepitas quieres para tu Sharingan?
+      <input id="texto_pepitas" type="text" value="3"/>
+      <br/>Tamaño del dibujo de 200 a 500:<input type="range"min="200"max="500"value="300"list="range_datalist"id="rango"/>
+    </p>
+    <p>
+    <input id="botoncito" type="button" value="Dibujar Sharingan"/>
+    </p>
+    <canvas id="dibujito" width="300" height="300"></canvas>
+    <p>Asi quedo tu Sharingan</p>
+    <script src="dibujoSharingan.js"></script>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+</<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Your weight in Mars and Jupiter</title>
+    <style type = "text/css">
+      body
+      {
+        background-color: #EF5350;
+        font-size: 40px;
+      }
+      strong
+      {
+        color: white;
+      }
+      h1
+      {
+        color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Weight Calculator</h1>
+    <p>This webpage calculates your weight in other planets by using gravity constants and your weight on Earth.</p>
+    <script type="text/javascript">
+      var g_earth = 9.8;
+      var g_mars = 3.7;
+      var g_jupiter = 24.8;
+      var newWeight;
+      var planet;
+      earthWeight = parseFloat(prompt("Enter your weight on Earth in kilos."));
+      planetNum = parseInt(prompt("Choose a planet. \n Type 1 for Mars, 2 for Jupiter, or anything else for kripton."));
+      document.write("<pr>You said your weight on earth is <strong>" + earthWeight + " Kg</strong>. ");
+      if(planetNum == 1)
+      {
+        newWeight = earthWeight * g_mars / g_earth;
+        planet = "Mars";
+      }
+      else if(planetNum == 2)
+      {
+        newWeight = earthWeight * g_jupiter / g_earth;
+        planet = "Jupiter";
+      }
+      else
+      {
+        newWeight = 1000000;
+        planet = "Kripton";
+      }
+      document.write("According to that, your weight in " + planet + " is <strong>" + newWeight + " Kg</strong>.</p>");
+    </script>
+  </body>
+</html>

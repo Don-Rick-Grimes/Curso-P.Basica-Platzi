@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dibujando con mouse</title>
+    <style type="text/css">
+      body
+      {
+        background-color: #FFFFBF;
+        font-size: 40px;
+        text-align: center;
+      }
+      canvas
+      {
+        background-color: white;
+      }
+      input[type = "button"]
+      {
+        font-size: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <p> Seleccione el tamaño del dibujo de 200 a 700 pixeles:
+    <input type="range" min="200" max="700" value="450" list="range_datalist" id="rango_tamaño_dibujo"/>
+    </p>
+    <p>
+      Selecciona el color:<input type="color" id="seleccionador_color"/>
+    </p>
+    <canvas id="area_de_dibujo" width="400" height="400"></canvas>
+    <input type= "button" value="Limpiar" id="boton_limpiar"/>
+    <p>Mueve las flechas del teclado para dibujar</p>
+    <script>
+    cuadrito = document.getElementById("area_de_dibujo");
+    papel = cuadrito.getContext("2d");
+    rangoTamañoDibujo = document.getElementById("rango_tamaño_dibujo");
+    botonLimpiar = document.getElementById("boton_limpiar");
+    color = document.getElementById("seleccionador_color");
+
+    rangoTamañoDibujo.addEventListener("click",ajustarTamañoLienzo);
+    botonLimpiar.addEventListener("click",limpiarLienzo);
+
+    cuadrito.addEventListener("mousemove",dibujarMouseMove);
+
+    xLapiz = cuadrito.width/2;
+    yLapiz = cuadrito.height/2;
+    movimiento = 3;
+
+    function dibujarMouseMove(evento)
+    {
+      if(evento.buttons==1)
+      {
+      dibujarLinea(color.value, xLapiz, yLapiz, evento.offsetX, evento.offsetY,papel);
+      }
+      xLapiz = evento.offsetX;
+      yLapiz = evento.offsetY;
+    }
+
+    function dibujarLinea(color, xinicial, yinicial, xfinal, yfinal, lienzo)
+    {
+      lienzo.beginPath();
+      lienzo.strokeStyle = color;
+      lienzo.lineWidth = 3;
+      lienzo.moveTo(xinicial, yinicial);
+      lienzo.lineTo(xfinal, yfinal);
+      lienzo.stroke();
+      lienzo.closePath();
+    }
+
+    function ajustarTamañoLienzo()
+    {
+      cuadrito.width = rangoTamañoDibujo.value;
+      cuadrito.height = rangoTamañoDibujo.value;
+      xLapiz = cuadrito.width/2;
+      yLapiz = cuadrito.height/2;
+    }
+
+    function limpiarLienzo()
+    {
+      papel.clearRect(0,0,cuadrito.width,cuadrito.height);
+      xLapiz = cuadrito.width/2;
+      yLapiz = cuadrito.height/2;
+    }
+
+    </script>
+  </body>
+</html>
